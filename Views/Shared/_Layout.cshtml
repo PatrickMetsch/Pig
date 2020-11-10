@@ -1,0 +1,76 @@
+﻿@model State
+@{
+    ViewData["Title"] = "Home Page";
+
+    string stateString = Context.Session.GetString("state");
+    State state = JsonConvert.DeserializeObject<State>(stateString);
+
+    int currentPlayerNumber = state.TurnNumber % 2 == 0 ? 1 : 2;
+    int scoreToShow = currentPlayerNumber == 1 ? state.P1Score : state.P2Score;
+}
+@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pig</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Let's Play PIG!</h1>
+    </div>
+    @RenderBody()
+    <main>
+        <div class="gameInterface">
+            <div class="topSection">
+                <div class="players">
+                    <p class="player">
+                        <span class="label">Player 1: </span>
+                        <span>@state.P1Score</span>
+                    </p>
+                    <p class="player">
+                        <span class="label">Player 2: </span>
+                        <span>@state.P2Score</span>
+                    </p>
+                </div>
+
+                <div class="controls">
+                    <a class="btn btn-outline-primary" asp-action="Index">New Game</a>
+                </div>
+            </div>
+
+            <div class="scoreBoard">
+                <p class="header label">
+                    <span>Player</span>
+                    <span>@currentPlayerNumber.ToString()</span>
+                    <span>'s Turn</span>
+                </p>
+                <div class="main">
+                    <a class="btn btn-primary" asp-action="Roll">Roll</a>
+                    <a class="btn btn-outline-primary" asp-action="Hold">Hold</a>
+                    <p>
+                        <span class="label">Die: </span>
+                        <span>@state.CurrentDiceValue</span>
+                    </p>
+                    <p>
+                        <span class="label">Total: </span>
+                        <span>@scoreToShow</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="rulesReference">
+            <p>First player to 20 wins.</p>
+            <p>Players take turns rolling the die.</p>
+            <p>Turn ends when a player Holds or Rolls a 1.</p>
+            <p>If a player rolls a 1, they lose all their points.</p>
+            <p>If a player holds, points earned during that turn are added to their total.</p>
+        </div>
+    </main>
+</body>
+</html>

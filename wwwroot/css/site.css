@@ -1,0 +1,109 @@
+﻿main {
+    margin: 0 4rem;
+    display: flex;
+}
+
+.pageTitle {
+    text-align: center;
+    margin: 0;
+    background-color: limegreen;
+    color: white;
+    text-shadow: 2px 2px 4px darkgreen;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.gameInterface,
+.rulesReference {
+    padding: 1rem;
+    border-radius: .5rem;
+    border: 1px solid #E9E9E9;
+    margin: 1rem;
+
+}
+
+.gameInterface {
+    flex: 0 0 70%;
+}
+
+.rulesReference {
+    flex: 1;
+}
+
+.rulesReference p:not(:last-child) {
+    border-bottom: 1px solid #E9E9E9;
+}
+
+.jumbotron {
+    background-color: lavender;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.jumbotron h1 {
+    margin: 0;
+    color: #330066;
+    text-shadow: 5px 5px 8px white;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.gameInterface .topSection {
+    display: flex;
+    border-bottom: 1px solid #E9E9E9;
+    margin-bottom: 1rem;
+}
+
+.gameInterface .topSection .players {
+    flex: 0 0 80%
+}
+
+.gameInterface .topSection .controls {
+    flex: 1;
+}
+
+.scoreBoard .main {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.scoreBoard .main > * {
+    margin-right: .875rem;
+}
+
+.btn {
+    padding: .5rem 1.5rem;
+}
+
+.modalContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalContainer .modalForeground {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 8rem 11rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 10px 10px 18px black;
+    border-left: 2px outset darkgrey;
+    border-top: 2px outset darkgrey;
+}
+
+.modalContainer .modalForeground h1 {
+    font-size: 4rem;
+    text-shadow: 5px 5px 8px darkgrey;
+}

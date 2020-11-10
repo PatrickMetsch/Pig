@@ -1,0 +1,12 @@
+﻿@model State
+@{
+    string winningPlayer = TempData["Winner"].ToString();
+}
+
+<div class="modalContainer">
+    <div class="modalForeground">
+        <h3>Player @winningPlayer</h3>
+        <h1 class="winner">Winner!</h1>
+        <a class="btn btn-primary" asp-action="Index">Play Again?</a>
+    </div>
+</div>
